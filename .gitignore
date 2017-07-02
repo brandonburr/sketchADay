@@ -1,2 +1,5 @@
 .DS_Store
 p5
+*~
+.ipynb_checkpoints/
+.idea/
