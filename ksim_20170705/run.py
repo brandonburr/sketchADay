@@ -89,7 +89,8 @@ os.system("sips -Z 400 %s/tmp_small/*.png" % OUTPUT_DIR)
 
 ### Animate
 #os.system("convert -delay 5 -loop 0 %s/tmp_small/*.png %s/%s.gif" % (OUTPUT_DIR, OUTPUT_DIR, OUTPUT_BASENAME))
-os.system("convert -delay 0 -loop 0 %s/tmp_small/*.png %s/%s.mov" % (OUTPUT_DIR, OUTPUT_DIR, OUTPUT_BASENAME))
+os.system("convert -delay 0 -loop 0 %s/tmp_small/*.png %s/%s.ogg" % (OUTPUT_DIR, OUTPUT_DIR, OUTPUT_BASENAME))
+#os.system("mencoder %s/tmp_small/*.png -o %s/%s.avi -ovc lavc -lavcopts vcodec=mjpeg" % (OUTPUT_DIR, OUTPUT_DIR, OUTPUT_BASENAME))
 
 ### Remove tmp_small directory
 os.system("rm -rf %s/tmp_small" % OUTPUT_DIR)
