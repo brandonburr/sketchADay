@@ -24,6 +24,7 @@
           		"ksim_20170705",
           		"ksim_20170706",
           		"ksim_20170707",
+              "brando_20170707",
     		];
     		for(let i = 0; i < sketchDates.length; i++) {
     			let dateStr = sketchDates[i].split("_").join(" ");
@@ -33,7 +34,7 @@
               <a href="${sketchDates[i]}/index.html" style="position:absolute; top:0; left:0; display:inline-block; width:300px; height:300px; z-index:5;"></a>
 							<a href="${sketchDates[i]}/index.html" target="_blank" class="dateUrl">${dateStr}</a>
 						</div>`)
-	     			.appendTo('body');	
+	     			.appendTo('body');
     		}
     	});
     </script>
