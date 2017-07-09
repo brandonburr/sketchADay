@@ -3,7 +3,7 @@ import os, sys, time
 import math
 import random
 
-OUTPUT_SIZE = 680
+OUTPUT_SIZE = 400
 
 CHECKPOINT = "~/git/sketchADay/data/multistyle-pastiche-generator-varied.ckpt"
 NUM_STYLES = 32
@@ -135,10 +135,13 @@ def animate(filename, animation_name, animation_def):
 
 ## Styles that are any good
 INTERESTING_STYLES = [0, 1, 3, 5, 6, 7, 8, 10, 11, 13, 14, 15, 16, 19, 21, 22, 24, 26, 28, 31]
+SHUFFLED_STYLES = [8, 26, 5, 14, 7, 15, 11, 16, 0, 6, 31, 24, 13, 3, 19, 22, 1, 21, 10, 28]
 
 STYLES = INTERESTING_STYLES[:]
 random.shuffle(STYLES)
-STYLES = [3, 5, 24, 15]
+#STYLES = [0, 1, 3, 5]
+
+print STYLES
 
 v = []
 for i in range(NUM_STYLES + 1):
@@ -153,40 +156,19 @@ for i in range(0, len(STYLES), 2):
   v4 = v[:]
   v5 = v[:]
 
-  v1[SIZE_PARAM] = 680
+  v1[SIZE_PARAM] = 424
   v1[STYLES[i]] = 1
 
-  v2[SIZE_PARAM] = 680
+  v2[SIZE_PARAM] = 424
   v2[STYLES[i+1]] = 1
 
-#   v3[SIZE_PARAM] = 40
-#   v3[STYLES[i+1]] = 1
-# 
-#   v4[SIZE_PARAM] = 424
-#   v4[STYLES[i+1]] = 1
-# 
-  v3[SIZE_PARAM] = 680
+  v3[SIZE_PARAM] = 424
   v3[STYLES[(i+2) % len(STYLES)]] = 1
   
-  tweens.append([v1, v2, 2])
-  tweens.append([v2, v3, 2])
-#   tweens.append([v3, v4, 24])
-#   tweens.append([v4, v5, 24])
+  tweens.append([v1, v2, 24])
+  tweens.append([v2, v3, 24])
 
-#animate("colombi.jpg", "colombi", tweens)
-
-v[SIZE_PARAM] = 680
-v1 = v[:]
-v2 = v[:]
-v3 = v[:]
-
-v1[6] = 1
-v2[6] = 0.5
-v2[3] = 0.25
-v2[5] = 0.25
-
-animate("colombi.jpg", "colombi2", [[v1,v1,1], [v2,v2,1]])
-
+animate("andy_squirrel.jpg", "andy_squirrel_interesting", tweens)
 
 # All styles
 # for style in range(32):
