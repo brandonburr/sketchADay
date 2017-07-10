@@ -135,10 +135,11 @@ def animate(filename, animation_name, animation_def):
 
 ## Styles that are any good
 INTERESTING_STYLES = [0, 1, 3, 5, 6, 7, 8, 10, 11, 13, 14, 15, 16, 19, 21, 22, 24, 26, 28, 31]
-SHUFFLED_STYLES = [8, 26, 5, 14, 7, 15, 11, 16, 0, 6, 31, 24, 13, 3, 19, 22, 1, 21, 10, 28]
+SHUFFLED_STYLES1 = [8, 26, 5, 14, 7, 15, 11, 16, 0, 6, 31, 24, 13, 3, 19, 22, 1, 21, 10, 28]
+SHUFFLED_STYLES2 = [28, 3, 14, 26, 21, 22, 8, 0, 1, 5, 24, 13, 19, 6, 16, 15, 11, 10, 31, 7]
 
-STYLES = INTERESTING_STYLES[:]
-random.shuffle(STYLES)
+STYLES = SHUFFLED_STYLES2[:]
+#random.shuffle(STYLES)
 #STYLES = [0, 1, 3, 5]
 
 print STYLES
@@ -168,7 +169,7 @@ for i in range(0, len(STYLES), 2):
   tweens.append([v1, v2, 24])
   tweens.append([v2, v3, 24])
 
-animate("andy_squirrel.jpg", "andy_squirrel_interesting", tweens)
+animate("andy_squirrel.jpg", "andy_squirrel_interesting_28_3_14_26_21_22_8_0_1_5_24_13_19_6_16_15_11_10_31_7", tweens)
 
 # All styles
 # for style in range(32):

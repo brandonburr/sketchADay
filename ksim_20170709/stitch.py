@@ -4,7 +4,8 @@ import math
 import random
 from PIL import Image, ImageDraw
 
-OUTPUT_SIZE = 424
+IMAGE_WIDTH = 424
+IMAGE_HEIGHT = 424
 
 OUTPUT_DIR = "scratch"
 os.system("mkdir %s" % OUTPUT_DIR)
@@ -13,8 +14,8 @@ os.system("mkdir %s" % OUTPUT_DIR)
 # os.system("mkdir %s" % temp_dir)
     
 
-v1_frames_dir = "../ksim_20170708/scratch/video1_frames"
-v2_frames_dir = "../ksim_20170708/scratch/video2_frames"
+v1_frames_dir = "scratch/andy_squirrel_interesting_8_26_5_14_7_15_11_16_0_6_31_24_13_3_19_22_1_21_10_28"
+v2_frames_dir = "scratch/andy_squirrel_interesting_28_3_14_26_21_22_8_0_1_5_24_13_19_6_16_15_11_10_31_7"
 output_frames_dir = "scratch/output_frames"
 os.system("mkdir %s" % output_frames_dir)
 
@@ -39,16 +40,33 @@ def get_tween_list(keyframe_spec):
 
 def make_inset_animation():
   framerate = 24
-  keyframe_spec = [
-    (70, 50, 120, 150), framerate, 
-    (224, 30, 150, 190), framerate, 
-    (200, 224, 100, 150), framerate, 
-    (30, 210, 150, 120), framerate, 
-    (70, 50, 120, 150), framerate, 
-    (50, 224, 180, 120), framerate, 
-    (224, 30, 130, 170), framerate, 
-    (200, 224, 100, 150), framerate, 
-  ]
+
+#   keyframe_spec = [
+#     (70, 50, 120, 150), framerate, 
+#     (224, 30, 150, 190), framerate, 
+#     (200, 224, 100, 150), framerate, 
+#     (30, 210, 150, 120), framerate, 
+#     (70, 50, 120, 150), framerate, 
+#     (50, 224, 180, 120), framerate, 
+#     (224, 30, 130, 170), framerate, 
+#     (200, 224, 100, 150), framerate, 
+#   ]
+
+  # make 20 random rectangles and use them as keyframes for the animation
+  MARGIN = 10
+  MIN_SIZE = 60
+  keyframe_spec = []
+  for i in range(20):
+    width = random.randrange(MIN_SIZE, IMAGE_WIDTH-MARGIN*2)
+    height = random.randrange(MIN_SIZE, IMAGE_HEIGHT-MARGIN*2)
+    x = random.randrange(MARGIN, IMAGE_WIDTH-width-MARGIN)
+    y = random.randrange(MARGIN, IMAGE_HEIGHT-height-MARGIN)
+    
+    keyframe = (x, y, width, height)
+    
+    keyframe_spec.append(keyframe)
+    keyframe_spec.append(framerate)
+
   keyframe_spec.append(keyframe_spec[0])
     
   return get_tween_list(keyframe_spec)
@@ -56,6 +74,7 @@ def make_inset_animation():
 inset_animation = make_inset_animation()
 for i in range(len(inset_animation)):
   v1f = "%s/frame_%04d.png" % (v1_frames_dir, i)
+  #v1f = "scratch/andy_squirrel_bw.jpg"
   v2f = "%s/frame_%04d.png" % (v2_frames_dir, i)
 
   i1 = Image.open(v1f)
